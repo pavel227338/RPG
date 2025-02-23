@@ -17,15 +17,15 @@ red = (255,0,0)
 screen = p.display.set_mode((width,height))
 screen.fill(grey)
 p.draw.rect(screen,black,(350,350,100,100))
-scene = classes.MainMenuScene()
+#scene = classes.MainMenuScene()
 run = True
 while run :
     for event in p.event.get():
         if event.type == p.QUIT:
             run = False
         #elif event.type ==     
-    #screen.fill(grey)
-    scene.draw()
+    screen.fill(grey)
+    #scene.draw()
     p.draw.rect(screen,black,(300,300,100,100))
     p.display.update()
     clock.tick(FPS)

@@ -1,7 +1,7 @@
 from random import randint
 import pygame
-import ui
-import utils
+# import ui
+# import utils
 class Scene:
     def __init__(self):
         pass
