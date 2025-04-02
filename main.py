@@ -1,32 +1,50 @@
 import pygame as p
 import classes
-p.init()
-width = 700
-height = 700
-FPS = 30
-clock = p.time.Clock()
-blue_2 = (0,0,255)
-blye = (153,204,255)
-white = (255,255,255)
-yellow = (255,255,0)
-teal = (102,255,255)
-green = (0,255,0)
-black = (0,0,0)
-grey = (153,153,153)
-red = (255,0,0)
-screen = p.display.set_mode((width,height))
-screen.fill(grey)
-p.draw.rect(screen,black,(350,350,100,100))
+import globals
+# screen = p.display.set_mode((globals.width,height))
+# screen.fill(grey)
+# p.draw.rect(screen,black,(350,350,100,100))
 #scene = classes.MainMenuScene()
-run = True
-while run :
-    for event in p.event.get():
-        if event.type == p.QUIT:
-            run = False
-        #elif event.type ==     
-    screen.fill(grey)
-    #scene.draw()
-    p.draw.rect(screen,black,(300,300,100,100))
-    p.display.update()
-    clock.tick(FPS)
+# run = True
+# while run :
+#     for event in p.event.get():
+#         if event.type == p.QUIT:
+#             run = False
+#         #elif event.type ==     
+#     screen.fill(grey)
+#     #scene.draw()
+#     p.draw.rect(screen,black,(300,300,100,100))
+class Game:
+    def __init__(self):
+        p.init()
+        self.clock = p.time.Clock()
+        self.screen = p.display.set_mode((globals.width, globals.height))
+    def new_game(self):
+        self.playing = True# все спрайты
+        self.hero = classes.Hero_swordsman(self)
+
+    def events(self):
+        for event in p.event.get():
+            if event.type == p.QUIT:
+                self.playing = False
+            # elif event.type == p.KEYDOWN:
+            #     if event.key == p.K_RIGHT:
+                    # self.hero.rect.x += 20
+
+    def update(self):
+        p.display.update()
+
+    def draw(self):
+        self.screen.fill(globals.grey)
+        self.hero.draw()
+
+    def main(self):
+        while self.playing:
+            self.events()
+            self.update()
+            self.draw()
+            self.clock.tick(globals.FPS)
+g = Game()
+g.new_game()
+g.main()
 p.quit()
