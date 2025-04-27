@@ -23,6 +23,7 @@ class Game:
         self.playing = True# все спрайты
         self.hero = classes.Hero_swordsman(self,200,200,"лупа(спрайт).png",100,350)
         self.eey = classes.Hero_swordsman(self,200,200,"пупа(тоже спрайт).jpg",1000,550)
+        self.granizza = classes.granizza()
 
     def events(self):
         for event in p.event.get():
@@ -33,9 +34,15 @@ class Game:
                     self.hero.rect.x += 20
                 if event.key == p.K_LEFT:
                     self.hero.rect.x -= 20
-        #TODO подумать точно ли здесь надо ставить проверку
         if self.hero.check_collision(self.eey):
             self.hero.fight(target=self.eey)
+            print(self.eey)
+            #TODO как удалить экземпляр класса?
+        if self.hero.check_collision(self.granizza):
+            self.change_scene()
+
+    def change_scene(self):
+        print("памагити")
 
     def update(self):
         p.display.update()
